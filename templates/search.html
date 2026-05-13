@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <title>Search Results: {{keyword}}</title>
+</head>
+<body>
+    <main class="container">
+        <hgroup>
+            <h1>'{{keyword}}'에 대한 검색 결과</h1>
+            <h2>총 {{ jobs|length }}개의 채용 공고를 찾았습니다.</h2>
+        </hgroup>
+
+        <figure>
+            <table role="grid">
+                <thead>
+                    <tr>
+                        <th>포지션</th>
+                        <th>회사명</th>
+                        <th>상세정보</th>
+                        <th>링크</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in jobs %}
+                    <tr>
+                        <td><strong>{{ job.title }}</strong></td>
+                        <td>{{ job.company_name }}</td>
+                        <td>{{ job.description }}</td>
+                        <td><a href="{{ job.link }}" role="button" target="_blank">지원하기</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </figure>
+        
+        <footer>
+            <a href="/" class="secondary">홈으로 돌아가기</a>
+        </footer>
+    </main>
+</body>
+</html>
